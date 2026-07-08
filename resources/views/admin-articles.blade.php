@@ -36,7 +36,7 @@
                             </div>
                         </td>
                         <td class="p-3 text-gray-600">
-                            {{ $article->published_at ? $article->published_at->format('d/m/Y') : '-' }}
+                            {{ $article->published_at ? $article->published_at->format('d/m/Y') : $article->created_at->format('d/m/Y') }}
                         </td>
                         <!-- Placeholders pour les actions CRUD de la maquette -->
                         <td class="p-3 text-right space-x-3 text-base">
