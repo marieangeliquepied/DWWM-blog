@@ -7,6 +7,7 @@
     <!-- On garde Tailwind pour la cohérence des bordures rectangulaires -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script src="https://unpkg.com/lucide@latest"></script>
 <body class="bg-white p-6 max-w-xl mx-auto">
 
     <h1 class="text-2xl font-sans text-gray-800 mb-6">Liste des catégories</h1>
@@ -50,8 +51,8 @@
                         
                         <!-- Actions -->
                         <td class="p-3 text-right space-x-3 text-base">
-                            <button title="Modifier">✏️</button>
-                            <button title="Supprimer">❌</button>
+                            <button title="Modifier"><i data-lucide="pencil" class="w-5 h-5 text-gray-600 hover:text-blue-600"></i></button>
+                            <button title="Supprimer"><i data-lucide="trash-2" class="w-5 h-5 text-gray-600 hover:text-red-600"></i></button>
                         </td>
                     </tr>
                 @endforeach
@@ -59,6 +60,6 @@
         </table>
     </div>
 </div>
-
+<script>lucide.createIcons();</script>
 </body>
 </html>
