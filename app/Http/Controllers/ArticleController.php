@@ -17,6 +17,6 @@ class ArticleController extends Controller{
     public function show(int $id): View {
         $article = Article::with(['category'])->findOrFail($id);
 
-        return view('articles-details', compact('article'));
+        return view('article-detail', compact('article'));
     }
 };
