@@ -18,7 +18,7 @@
         </a>
     </div>
 
-    <div style="background-color: tomato">
+    <div>
         @yield('content')
     </div>
 

@@ -8,7 +8,7 @@
             </div>
             <div>
                 <!-- Affichage de la date de publication (ou de création si non publiée) -->
-                {{ $article->published_at ? $article->published_at->format('d/m/Y') : $article->created_at->format('d/m/Y') }}
+                {{ $article->published_at ? $article->published_at->format('d/m/Y') : 'Non publié' }}
             </div>
         </div>
             <!-- Titre de l'article -->
