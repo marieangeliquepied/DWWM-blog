@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index() {
-        $articles = Article::with(['category', 'user'])->get();
+        $articles = Article::with(['category'])
+        ->latest('created_at')
+        ->paginate(5);
+
         return view('admin-articles', compact('articles'));
     }
 }

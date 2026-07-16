@@ -71,9 +71,13 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="mt-4">
+                    {{ $articles->links() }}
+                </div>
             </div>
         </div>
 <script>lucide.createIcons();</script>
 @endsection
+
 </body>
 </html>
