@@ -9,7 +9,10 @@ use Illuminate\View\View;
 class ArticleController extends Controller{
     // Pour afficher la LISTE de tous les articles
     public function index(): View {
-        $articles = Article::all();
+        $articles = Article::with(['category'])
+            ->where('status', 'PUBLISHED')
+            ->latest('published_at')
+            ->paginate(3);
 
         return view('articles-list', ['articles' => $articles]);
     }

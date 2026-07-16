@@ -14,4 +14,10 @@ class Article extends Model{
     public function user() : BelongsTo {
         return $this->belongsTo(User::class);
     }
+
+    protected function casts(): array {
+        return [
+        'published_at' => 'datetime'
+        ];
+    }
 }

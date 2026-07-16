@@ -20,6 +20,10 @@
     <div class="space-y-4 font-sans">
         @foreach ($articles as $article)
             <x-article :Article="$article"/>
+            
         @endforeach
+        <div class="mt-8">
+            {{ $articles->links() }}
+        </div>
     </div>
     @endsection
