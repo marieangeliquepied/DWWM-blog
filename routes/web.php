@@ -11,6 +11,13 @@ Route::get('/', function () {
 });
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
+
 Route::get('/admin/articles', [AdminController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
+
+// Routes de test "Get by ID" côté admin
+Route::get('/admin/api/articles/{id}', [AdminController::class, 'getArticleById']);
+Route::get('/admin/api/categories/{id}', [CategoryController::class, 'getCategoryById']);
+
+

@@ -15,4 +15,12 @@ class AdminController extends Controller
 
         return view('admin-articles', compact('articles'));
     }
+
+    public function getArticleById(int $id) {
+        // Récupère l'article avec sa catégorie, peu importe son statut (DRAFT ou PUBLISHED)
+        $article = Article::with(['category'])->findOrFail($id);
+
+        // On retourne directement l'objet (Laravel va le convertir automatiquement en JSON)
+        return response()->json($article);
+    }
 }
