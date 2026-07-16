@@ -23,7 +23,7 @@
 
             <!-- Lien Lire seul (Auteur masqué) -->
             <div class="text-right">
-                    <a href="{{ route('articles.show', $article->id) }}" class="text-sm underline text-black hover:text-gray-600">Lire →</a>
+                    <a href="{{ route('articles.show', $article->slug) }}" class="text-sm underline text-black hover:text-gray-600">Lire →</a>
             </div>
     </div>
 </div>
