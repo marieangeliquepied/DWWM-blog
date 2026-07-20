@@ -26,3 +26,6 @@ Route::get('/admin/articles/create', [AdminController::class, 'create'])->name('
 Route::post('/admin/articles', [AdminController::class, 'store'])->name('admin.articles.store');
 Route::get('/admin/articles/{article}/edit', [AdminController::class, 'edit'])->name('admin.articles.edit');
 Route::put('/admin/articles/{article}', [AdminController::class, 'update'])->name('admin.articles.update');
+
+// Route pour supprimer un article
+Route::delete('/admin/articles/{article}', [AdminController::class, 'destroy'])->name('admin.articles.destroy');

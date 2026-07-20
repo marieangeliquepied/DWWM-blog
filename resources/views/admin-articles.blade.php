@@ -52,7 +52,16 @@
                                     <a href="{{ route('admin.articles.edit', $article) }}" title="Modifier">
                                         <i data-lucide="pencil" class="w-5 h-5 text-gray-600 hover:text-blue-600"></i>
                                     </a>
-                                    <button title="Supprimer"><i data-lucide="trash-2" class="w-5 h-5 text-gray-600 hover:text-red-600"></i></button>
+                                    <form action="{{ route('admin.articles.destroy', $article) }}" 
+                                        method="POST" 
+                                        class="inline" 
+                                        onsubmit="return confirm('Es-tu sûre de vouloir supprimer cet article ?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" title="Supprimer">
+                                            <i data-lucide="trash-2" class="w-5 h-5 text-gray-600 hover:text-red-600"></i>
+                                        </button>
+                                    </form>
                                     @if($article->status !== 'PUBLISHED')
                                         <button title="Publier">
                                             <i data-lucide="send" class="w-5 h-5 text-gray-600 hover:text-green-600"></i>

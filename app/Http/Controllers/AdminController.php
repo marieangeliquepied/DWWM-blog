@@ -89,4 +89,15 @@ class AdminController extends Controller
 
         return $slug;
     }
+
+    public function destroy(Article $article)
+{
+    // Supprime l'article de la base de données
+    $article->delete();
+
+    // Redirige vers la liste avec un message de succès
+    return redirect()
+        ->route('admin.articles.index')
+        ->with('success', 'Article supprimé avec succès.');
+}
 }
