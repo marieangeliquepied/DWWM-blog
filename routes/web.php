@@ -29,3 +29,11 @@ Route::put('/admin/articles/{article}', [AdminController::class, 'update'])->nam
 
 // Route pour supprimer un article
 Route::delete('/admin/articles/{article}', [AdminController::class, 'destroy'])->name('admin.articles.destroy');
+
+// CRUD Catégories Admin
+Route::get('/admin/categories', [CategoryController::class, 'adminIndex'])->name('admin.categories.index');
+Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+Route::post('/admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
+Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
+Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
