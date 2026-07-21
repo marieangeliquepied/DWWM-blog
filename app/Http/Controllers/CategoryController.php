@@ -13,4 +13,10 @@ class CategoryController extends Controller
 
         return view('categories-list', ['categories' => $categories]);
     }
+
+    public function getCategoryById(int $id) {
+        $category = Category::findOrFail($id);
+
+        return response()->json($category);
+    }
 }
