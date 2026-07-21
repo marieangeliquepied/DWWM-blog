@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Article;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model{
     // Liaison avec la base de données
