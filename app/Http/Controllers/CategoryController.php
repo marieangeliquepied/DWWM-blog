@@ -20,10 +20,15 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-    public function adminIndex(): View {
     // On récupère les catégories avec le nombre d'articles associés
-    $categories = Category::withCount('articles')->get();
+    public function adminIndex(): View {
+        $categories = Category::withCount('articles')->get();
 
-    return view('admin-categories-list', ['categories' => $categories]);
+        return view('admin-categories-list', ['categories' => $categories]);
+    }
+
+    // Affiche la vue contenant le formulaire de création
+    public function create(): View {
+        return view('admin-categories-create');
     }
 }
