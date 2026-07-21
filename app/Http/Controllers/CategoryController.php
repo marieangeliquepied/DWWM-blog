@@ -63,8 +63,7 @@ class CategoryController extends Controller
         return view('admin-categories-edit', compact('category'));
     }
 
-    public function update(Request $request, Category $category): RedirectResponse
-    {
+    public function update(Request $request, Category $category): RedirectResponse {
         // 1. Validation (on ignore l'ID actuel pour la règle unique)
         $validated = $request->validate([
             'name' => [
@@ -90,4 +89,18 @@ class CategoryController extends Controller
                         ->with('success', 'La catégorie a été modifiée avec succès !');
     }
 
+    public function destroy(Category $category): RedirectResponse {
+        // 1. Vérification de la règle métier : présence d'articles associés
+        if ($category->articles()->exists()) {
+            return redirect()->route('admin.categories.index')
+                            ->with('error', 'Impossible de supprimer cette catégorie car elle contient des articles.');
+        }
+
+        // 2. Suppression si la catégorie est vide
+        $category->delete();
+
+        // 3. Redirection avec confirmation
+        return redirect()->route('admin.categories.index')
+                        ->with('success', 'La catégorie a été supprimée avec succès !');
+    }
 }

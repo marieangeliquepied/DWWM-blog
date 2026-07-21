@@ -15,6 +15,20 @@
         </a>
     </div>
 
+    {{-- Message de succès (Vert) --}}
+    @if(session('success'))
+        <div class="mb-4 p-4 bg-green-50 border border-green-200 text-green-700 text-sm rounded-sm">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    {{-- Message d'erreur (Rouge) --}}
+    @if(session('error'))
+        <div class="mb-4 p-4 bg-red-50 border border-red-200 text-red-700 text-sm rounded-sm">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <!-- Tableau des catégories -->
     <div class="border border-gray-400 bg-white">
         <table class="w-full text-left border-collapse">
