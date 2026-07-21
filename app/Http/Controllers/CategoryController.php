@@ -55,4 +55,10 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')
                         ->with('success', 'La catégorie a été créée avec succès !');
     }
+
+    // Laravel injecte directement la catégorie demandée grâce à l'ID passé dans l'URL
+    public function edit(Category $category): View {
+        
+        return view('admin-categories-edit', compact('category'));
+    }
 }
