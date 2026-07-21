@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -61,4 +62,32 @@ class CategoryController extends Controller
         
         return view('admin-categories-edit', compact('category'));
     }
+
+    public function update(Request $request, Category $category): RedirectResponse
+    {
+        // 1. Validation (on ignore l'ID actuel pour la règle unique)
+        $validated = $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('categories', 'name')->ignore($category->id),
+            ],
+        ], [
+            'name.required' => 'Le nom de la catégorie est obligatoire.',
+            'name.unique' => 'Cette catégorie existe déjà.',
+            'name.max' => 'Le nom ne doit pas dépasser 50 caractères.',
+        ]);
+
+        // 2. Mise à jour en base de données
+        $category->update([
+            'name' => $validated['name'],
+            'slug' => Str::slug($validated['name']),
+        ]);
+
+        // 3. Redirection vers la liste
+        return redirect()->route('admin.categories.index')
+                        ->with('success', 'La catégorie a été modifiée avec succès !');
+    }
+
 }
