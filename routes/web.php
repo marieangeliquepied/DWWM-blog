@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Category;
 use GuzzleHttp\Promise\Create;
 
@@ -37,3 +38,7 @@ Route::post('/admin/categories', [CategoryController::class, 'store'])->name('ad
 Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
 Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
 Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+
+// Inscription
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
