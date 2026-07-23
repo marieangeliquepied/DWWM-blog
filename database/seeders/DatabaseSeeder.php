@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,17 +16,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // 1. Création d'un compte ADMIN pour tes tests
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'firstname' => 'Admin',
+            'lastname' => 'Master',
+            'email' => 'admin@test.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
         ]);
 
+        User::factory()->create([
+            'firstname' => 'Test',
+            'lastname' => 'User',
+            'email' => 'user@test.com',
+            'password' => Hash::make('password'),
+            'role' => 'user',
+        ]);
+
+        // 2. Création de 5 utilisateurs classiques
+        User::factory(5)->create();
+
+        // 3. Tes seeders existants pour les catégories et articles
         $this->call([
             CategorySeeder::class,
             ArticleSeeder::class,
-            
         ]);
     }
 }
