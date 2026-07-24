@@ -39,4 +39,16 @@ class LoginController extends Controller
             'email' => 'Les identifiants ne correspondent pas.',
         ])->onlyInput('email');
     }
+
+    public function destroy(Request $request) {
+        // 1. Déconnexion de l'utilisateur
+        Auth::logout();
+
+        // 2. Invalidation de la session et régénération du token
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // 3. Redirection vers l'accueil
+        return redirect('/')->with('success', 'Déconnexion réussie, à très vite !');
+    }
 }
