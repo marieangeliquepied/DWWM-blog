@@ -10,10 +10,10 @@
 <body class="bg-white p-6 max-w-5xl mx-auto">
     
     <div class="auth-bar">
-        <a href="" class="auth-link">
+        <a href="{{ route('register') }}" class="auth-link">
             S'incrire
         </a>
-        <a href="" class="auth-link">
+        <a href="{{ route('login') }}" class="auth-link">
             Se connecter
         </a>
     </div>

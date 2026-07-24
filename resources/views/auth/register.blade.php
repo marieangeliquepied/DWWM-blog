@@ -58,7 +58,7 @@
 
         <p class="text-sm text-gray-600 mb-8 text-center">
             Vous êtes déjà inscrit ? 
-            <a href="{{ route('register') }}" class="underline hover:text-black">→ Se connecter</a>
+            <a href="{{ route('login') }}" class="underline hover:text-black">→ Se connecter</a>
         </p>
 
         {{-- Bouton Soumission --}}
