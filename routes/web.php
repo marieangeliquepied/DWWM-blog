@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 use App\Models\Category;
 use GuzzleHttp\Promise\Create;
 
@@ -42,3 +43,7 @@ Route::delete('/admin/categories/{category}', [CategoryController::class, 'destr
 // Inscription
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
+
+// Page et traitement de la connexion
+Route::get('/login', [LoginController::class, 'create'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
