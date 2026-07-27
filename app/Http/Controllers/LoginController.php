@@ -49,6 +49,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         // 3. Redirection vers l'accueil
-        return redirect('/')->with('success', 'Déconnexion réussie, à très vite !');
+        return redirect('/login')->with('success', 'Déconnexion réussie, à très vite !');
     }
 }
