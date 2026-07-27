@@ -13,14 +13,24 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('articles.ind
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 // --- AUTHENTIFICATION ---
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
-Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+Route::middleware('guest')->group(function() {
+    Route::controller(RegisterController::class)->group(function (){
+        Route::get('/register', 'create')->name('register');
+        Route::post('/register', 'store');
+    });
+
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/login','create')->name('login');
+        Route::post('/login', 'store');
+    });
+});
+
+Route::post('/logout', [LoginController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
 
 // --- ESPACE ADMIN (Protégé par le middleware 'admin') ---
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['auth','admin'])->group(function () {
     
     // Articles Admin
     Route::get('/admin/articles', [AdminController::class, 'index'])->name('admin.articles.index');
